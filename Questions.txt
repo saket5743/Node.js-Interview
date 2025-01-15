@@ -467,11 +467,165 @@ doTask1((err, result1) => {
     });
 });
 
+Q22. What is the difference between run time and compile time errors?
+Ans. 1. Compile-Time Errors
+Definition: These are errors detected by the compiler during the compilation phase (before the program runs).
+Nature:
+Related to syntax, type checking, and other language rules.
+Occur due to incorrect use of language constructs.
+Examples:
+Missing a semicolon in a language where it is required.
+Using a variable that hasn’t been declared.
+Passing the wrong type of argument to a function.
+Detection: The program won't run until these errors are fixed.
+Type of Feedback: Specific error messages provided by the compiler.
+Solution Approach: Fix errors based on the compiler’s messages.
 
+2. Runtime Errors
+Definition: These are errors that occur during the execution of a program after it has been successfully compiled.
+Nature:
+Related to logical issues, invalid operations, or unforeseen input or situations.
+Occur in response to the state of the program's environment or data.
+Examples:
+Dividing by zero.
+Null pointer or undefined variable access.
+Running out of memory.
+File not found or invalid user input.
+Detection: The program compiles successfully but crashes or behaves unexpectedly during execution.
+Type of Feedback: Debugger or runtime environment messages or logs.
+Solution Approach: Debugging the code, adding validation and exception handling.
 
+Q23. What is promise?
+Ans. JavaScript Promises make handling asynchronous operations like API calls, file loading, or time delays easier. Think of a Promise as a placeholder for a value that will be available in the future. It can be in one of three states:
 
+Pending: The task is in initial state.
+Fulfilled: The task completed successfully, and the result is available.
+Rejected: The task failed, and an error is provided.
 
+Example:-
+let promise = new Promise((resolve, reject) => {
+  // Perform an operation (e.g., API request, file reading)
+  let success = true; // Simulating an operation's outcome
 
+  if (success) {
+    resolve("Operation successful!"); // Fulfilled
+  } else {
+    reject("Operation failed."); // Rejected
+  }
+});
 
+// Consuming the promise
+promise
+  .then(result => {
+    console.log(result); // Handles the success case
+  })
+  .catch(error => {
+    console.error(error); // Handles the failure case
+  });
 
+Q24. How do we handle errors in the promise?
+Ans. To handle any errors that may occur in the chain, you can add a call to catch at the end of the chain. If any of the Promise s are rejected, this catch handler will run, and the rest of the chain is skipped.
+Example:-
+let promise = new Promise((resolve, reject) => {
+  let success = false; // Simulate operation result
+  if (success) {
+    resolve("Operation successful!");
+  } else {
+    reject("Operation failed.");
+  }
+});
+
+promise
+  .then(result => {
+    console.log(result);
+  })
+  .catch(error => {
+    console.error("Error caught:", error);
+  });
+
+Q25. What is thread pool?
+Ans. A thread pool in Node.js is a group of worker threads that handle tasks that would otherwise block the main thread.
+Purpose:
+The thread pool allows Node.js to handle CPU-intensive tasks efficiently, keeping the main thread responsive to other requests and events. 
+How it works:
+The thread pool is used to perform long-running operations in the background, without blocking the main thread. 
+Benefits:
+The thread pool allows Node.js to be asynchronous and non-blocking, which can help create scalable and responsive applications. 
+How it's implemented:
+The Libuv library provides multithreading to Node.js, which allows for the creation of a thread pool. The default size of the thread pool is 4, but it can be changed at startup time.
+
+Q26. Can we access the node through DOM?
+Ans. No, Node.js and the DOM (Document Object Model) are fundamentally different, and you cannot directly access the DOM through Node.js. Here's why:
+
+Key Differences:
+Node.js:
+It is a runtime environment for executing JavaScript code on the server side.
+It does not have built-in support for the DOM since it does not execute in a browser context.
+Node.js is designed for handling backend operations like file system access, networking, databases, and server-side logic.
+
+DOM:
+The DOM is a programming interface for web documents, representing the structure of an HTML or XML document.
+It is primarily accessible through JavaScript in a web browser.
+The DOM allows you to manipulate the structure, style, and content of a web page (e.g., via document.querySelector).
+
+Q27. Importance and difference between monolithic and microservice architecture?
+Ans. Importance of Software Architecture
+Software architecture plays a crucial role in determining the scalability, maintainability, and performance of an application. Two commonly used architectures are Monolithic Architecture and Microservice Architecture, each with its own strengths and limitations.
+
+Monolithic Architecture:-
+Definition:
+A monolithic application is built as a single, unified unit.
+All the functionalities (e.g., UI, business logic, database access) are tightly coupled and run in a single process or application.
+Characteristics:
+
+Tightly Coupled:
+All components (e.g., modules) are interconnected and dependent on each other.
+Single Deployment Unit:
+Entire application is built, deployed, and scaled as a whole.
+
+Advantages:
+Simplicity:
+Easy to develop and deploy for small applications.
+Performance:
+Communication between modules occurs in-process, making it faster than inter-service communication.
+Single Codebase:
+Easier for smaller teams to manage a unified codebase.
+
+Disadvantages:
+Scaling:
+Scaling the whole application to handle increased load is less efficient.
+Development Bottlenecks:
+A change in one module may require rebuilding and testing the entire application.
+Technology Constraints:
+Limited flexibility to use different programming languages or tools for different parts of the application.
+
+Microservice Architecture
+
+Definition:
+A microservice application is composed of independent, loosely coupled services, each responsible for a specific business function.
+Each microservice can be developed, deployed, and scaled independently.
+
+Characteristics:
+Loosely Coupled:
+Microservices communicate over the network using APIs, often with protocols like HTTP or gRPC.
+Independent Deployment:
+Each service can be deployed and updated without affecting the others.
+
+Advantages:
+Scalability:
+Specific services can be scaled independently based on their resource requirements.
+Resilience:
+A failure in one service typically doesn’t affect others.
+Technological Diversity:
+Each service can be developed using the best-suited programming language, database, or tools.
+Faster Deployment:
+Smaller teams can independently work on specific services.
+
+Disadvantages:
+Complexity:
+Managing multiple services introduces operational overhead (e.g., service discovery, API management, distributed logging).
+Communication Overhead:
+Network latency can become a concern due to inter-service communication.
+Data Consistency:
+Maintaining consistency across distributed services can be challenging.
 
